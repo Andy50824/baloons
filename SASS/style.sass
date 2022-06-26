@@ -4,7 +4,7 @@
     box-sizing: border-box
 
 html
-    font-size: 10px
+    font-size: 62.5%
 
 body
     font-family: 'Roboto', sans-serif
@@ -13,54 +13,60 @@ body
     font-size: 1.6rem
     letter-spacing: .2rem
     padding: 5rem
-    background: white 
+    background-color: white
 
 .container
-    background: #F7F7F7
+    background-color: #F7F7F7
 
 .header
-    
-    background: linear-gradient(90.05deg, rgba(186, 133, 84, 0.7) 0.03%, rgba(1, 1, 1, 0.7) 99.94%), url("../IMG/background-header.jpg") 
-    no-repeat center 
+    position: relative
     height: 95vh
+    background:linear-gradient(90deg, rgba(186, 133, 84, 0.7) 0.03%, rgba(1, 1, 1, 0.7) 99.94%), url(../IMG/header_background.jpg) no-repeat center / cover
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
-
     &__logo
-        width: 5.6rem
+        position: absolute
+        left: 5rem
+        top: 5rem
         height: 7rem
-        padding: 5rem
+        width: 5.6rem
     &__box
-        transform: translate(-50% -50%)
+        position: absolute
         top: 40%
         left: 50%
+        transform: translate(-50%,-50%)
         width: 100%
         text-align: center
-.firstpage
-    margin-bottom: 5rem
+
+.title-first
+    color: #FFFFFF
     &__main
         display: block
         font-weight: 800
         font-size: 5rem
-        text-transform: uppercase
         line-height: 6rem
         letter-spacing: 1rem
-        color: #FFFFFF
+        text-transform: uppercase
+        margin-bottom: 1rem
         animation-name: LeftToRight
-        animation-duration: 2s
+        animation-duration: 3s
         animation-delay: 1s
-        animation-fill-mode: ease
-    &__secondary        
+        animation-timing-function: ease
+        backface-visibility: hidden
+    &__secondary  
         display: block
-        font-weight: 200
+        font-weight: 100
         font-size: 4rem
         line-height: 4.8rem
         letter-spacing: .5rem
-        color: #FFFFFF
         animation-name: RightToLeft
-        animation-duration: 2s
+        animation-duration: 3s
         animation-delay: 1s
-        animation-fill-mode: ease
+        animation-timing-function: ease
+        backface-visibility: hidden
+        margin-bottom: 6.5rem
+
 .btn
+    /*посещенные и не посещенные ссылки*/
     &:link, &:visited
         text-transform: uppercase
         text-decoration: none
@@ -71,53 +77,68 @@ body
         font-weight: 600
         font-size: 2rem
         display: inline-block
+        /*длительность действия*/
         transition: all .3s
         position: relative
+    &:hover
+        /*приподнимаем кнопку*/
+        transform: translateY(-.4rem)
+        /*тень*/
+        box-shadow:(0rem .4rem .4rem rgba(0, 0, 0, 0.3))
+        &::after
+            /*исчезание кнопки*/
+            opacity: 0
+            /*увеличивает певдоэлемент*/
+            transform: scaleX(1.3) scaleY(1.5)
+            
+    &:active
+        transform: translateY(-.2rem)
+        box-shadow:(0rem .4rem .4rem rgba(0, 0, 0, 0.3))
     &::after
+        /*создаем псевдоэлемент кнопки(под кнопкой)*/
         content: ""
+        background: white
         width: 100%
         height: 100%
-        background: white
         border-radius: 5rem
         display: inline-block
         position: absolute
         top: 0
         left: 0
         z-index: -1
+        /*длительность*/
         transition: .5s
-    &:hover
-        transform: translateY(-1rem)
-        box-shadow:(0rem .4rem .4rem rgba(0, 0, 0, 0.3))
-        &::after
-            opacity: 0
-            transform: scaleX(1.3) scaleY(1.6)
-    &:active
-        transform: translateY(-.2rem)
-        box-shadow:(0rem .4rem .4rem rgba(0, 0, 0, 0.3))
-    
+    &_animated
+        animation: BtnToUP 0.5s ease-out .7s
+        /*стили первого кадра на протяжении анимации*/
+        animation-fill-mode: backwards
+
+@keyframes BtnToUP
+    0%
+        opacity: 0
+        transform: translateY(5rem)
+
+    100%
+        opacity: 1
+        transform: translateY(0rem)
+
 @keyframes LeftToRight
     0%
         opacity: 0
         transform: translateX(-10rem)
-    70%
+    80%
         transform: translateX(2rem)
     100%
         opacity: 1
         transform: translateX(0rem)
 
+
 @keyframes RightToLeft
     0%
         opacity: 0
         transform: translateX(10rem)
-    70%
+    80%
         transform: translateX(-2rem)
     100%
         opacity: 1
         transform: translateX(0rem)
-        
-       
-
-
-
-     
-        
